@@ -13,7 +13,7 @@ const Billing = (props) => {
     <>
     <div className='cartitem-1'>
       <div className="cartitems-total">
-            <h1>Cart Totals</h1>
+            <h1 style={{color:"grey"}}>Cart Totals</h1>
             <div>
               <div className="cartitems-total-item">
                 <p>Subtotal</p>

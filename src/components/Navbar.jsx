@@ -17,7 +17,7 @@ import { ShopContext } from '../context/shopcontext'
     <header className='navbar'>
       <div className='logo'>
         <img src='logosmart.png' alt='StyleShop Logo' className='logoe'/>
-        <span>OutfitHub</span>
+        <span>Outfit<h4>Hub</h4></span>
       </div>
     <ul className='nav-menu'>
       <li onClick={()=>{setMenu('shop')}}><Link style={{textDecoration:'none', color:"black"}} to='/'>Shop</Link> {menu === 'shop'? <hr/>:<></>}</li>
