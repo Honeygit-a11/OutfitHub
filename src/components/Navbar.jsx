@@ -1,0 +1,41 @@
+import React, { useContext, useState } from 'react'
+import '../Style/Navbar.css'
+import { Link } from 'react-router-dom'
+import cart_icon from '../components/Assets/cart_icon.png'
+import { ShopContext } from '../context/shopcontext'
+ const Navbar = () => {
+  const [menu,setMenu] = useState('shop');
+  const {getTotalCartItems} = useContext(ShopContext);
+  return (
+    <>
+    <div>
+    <div className='top-bar'>
+      Summer Sale: Up to 50% off | Free Shipping on orders over $50 |{" "}
+      <Link to="/mens">Shop now</Link>
+    </div>
+
+    <header className='navbar'>
+      <div className='logo'>
+        <img src='logosmart.png' alt='StyleShop Logo' className='logoe'/>
+        <span>OutfitHub</span>
+      </div>
+    <ul className='nav-menu'>
+      <li onClick={()=>{setMenu('shop')}}><Link style={{textDecoration:'none', color:"black"}} to='/'>Shop</Link> {menu === 'shop'? <hr/>:<></>}</li>
+      <li onClick={()=>{setMenu('mens')}}><Link style={{textDecoration:'none',color:'black'}} to='/mens'>Mens</Link>{menu === 'mens'? <hr/>:<></>}</li>
+      <li onClick={()=>{setMenu('womens')}}><Link style={{textDecoration:'none',color:'black'}} to='/womens'>Womens</Link>{menu === 'womens'? <hr/>:<></>}</li>
+      <li onClick={()=>{setMenu('kids')}}><Link style={{textDecoration:'none',color:'black'}} to ='/kids'>Kids</Link> {menu === 'kids'? <hr/>:<></>}</li>
+
+    </ul>
+     <div className='icons'>
+     <Link to ='/login'><button>Login</button></Link> 
+      <div className='cart'>
+      <Link to='/cart'> <img src={cart_icon} alt='cart'/></Link>
+        <span className='cart-count'>{getTotalCartItems()}</span>
+      </div>
+     </div>
+    </header>
+    </div>
+    </>
+  )
+}
+export default Navbar;
