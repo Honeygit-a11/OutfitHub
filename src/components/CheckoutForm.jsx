@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import '../Style/CheckoutForm.css'
+import { ShopContext } from '../context/shopcontext';
 
 const CheckoutForm = ({ onSubmit }) => {
   const [address, setAddress] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [editingId,setEditingId]=useState(null);
+  const {getTotalCartAmount} = useContext(ShopContext)
   const [formData, setFromData] = useState({
     name: '',
     email: "",
@@ -31,14 +34,22 @@ const CheckoutForm = ({ onSubmit }) => {
     });
     setShowForm(false);
   }
+  const handleEdit=(addr)=>{
+    setFromData(addr);
+    setEditingId(addr.id);
+    setShowForm(true);
+  }
   return (
     <>
       <div className="shipping-container">
-        <h2 className="shipping-heading">Delivery to</h2>
 
+        <h2 className="shipping-heading">Delivery to</h2>
         <div
           className="add-address"
-          onClick={() => setShowForm(!showForm)}
+          onClick={() => {setShowForm(true)
+            setEditingId(null);
+          }
+  }
         >
           <span>+ ADD ADDRESS</span>
         </div>
@@ -97,13 +108,14 @@ const CheckoutForm = ({ onSubmit }) => {
               onChange={handleChange}
               required />
 
-            <button onClick={handleAddAddress}>Save Address</button>
+            <button onClick={handleAddAddress}>{editingId ? 'Update Address' : "save address"}</button>
           </div>
         )}
 
         <div className="saved-addresses">
           {address.map((addr) => (
             <div key={addr.id} className="address-card">
+              <p style={{fontWeight:600,fontSize:30,}}>Delivery address</p>
               <h3>{addr.name}</h3>
               <p><strong>Email:</strong> {addr.email}</p>
               <p><strong>Phone:</strong> {addr.phone}</p>
@@ -111,10 +123,18 @@ const CheckoutForm = ({ onSubmit }) => {
               <p>
                 <strong>City:</strong> {addr.city}, <strong>State:</strong> {addr.state}, <strong>Pincode:</strong> {addr.pincode}
               </p>
-              <button className="deliver-btn">Deliver Here</button>
+              <div className="address-actions">
+              <button className="deliver-btn" onClick={()=> handleEdit(addr)}>Change</button>
+              </div>
+          <div className="payment-info">
+          <h3>Total Cost : ₹{getTotalCartAmount()}</h3>
+          <button className='payment-btn'>Proceed to payment</button>
+          </div>
             </div>
           ))}
         </div>
+        
+        
       </div>
 
 
@@ -122,4 +142,4 @@ const CheckoutForm = ({ onSubmit }) => {
   )
 };
 
-export default CheckoutForm
+export default CheckoutForm;

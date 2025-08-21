@@ -10,9 +10,9 @@ const CheckoutSection = () => {
           <div className='checkout-left'>
             <CheckoutForm />
           </div>
-          <div className='checkout-right'>
+          {/* <div className='checkout-right'>
             <Billing />
-          </div>
+          </div> */}
         </div>
       </div>
     </>
