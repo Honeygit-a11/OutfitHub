@@ -12,6 +12,9 @@ import kid_banner from './components/Assets/banner_kids.png'
 import Mainlayout from './layout/Mainlayout';
 import Footer from './components/Footer';
 import Checkout from './pages/Checkout';
+import Viewallproduct from './pages/Viewallproduct';
+import Summer from './pages/Summer';
+
 const App = () => {
   return (
     <>
@@ -19,6 +22,8 @@ const App = () => {
     <Routes>
       <Route path='/' element={<Mainlayout/>}>
       <Route index element={<Shop />}/>
+      <Route path='/viewproduct' element={<Viewallproduct/>}/>
+      <Route path='/summer' element={<Summer/>}/>
       <Route path='/mens' element={<ShopCategory banner={men_banner} category='men'/>}/>
       <Route path='/womens' element={<ShopCategory banner={women_banner}category='women'/>}/>
       <Route path='/kids' element={<ShopCategory banner={kid_banner} category='kid'/>}/>

@@ -11,7 +11,7 @@ const Footer = () => {
     <footer className="footer">
   <div className="footer-container">
     <div className="footer-column brand-column">
-      <h3>StyleShop</h3>
+      <h3>OutfitHub</h3>
       <p>Your one-stop destination for quality fashion and accessories.</p>
       <div className="social-icons">
         <a href="#"><FaFacebook /></a>
@@ -56,7 +56,7 @@ const Footer = () => {
   </div>
   
   <div className="footer-bottom">
-    <p>© 2025 StyleShop. All rights reserved.</p>
+    <p>© 2025 OutfitHub. All rights reserved.</p>
     <div className="footer-links">
       <a href="#">Terms of Service</a>
       <a href="#">Privacy Policy</a>

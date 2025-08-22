@@ -34,6 +34,24 @@ import p33_img from "./product_33.png";
 import p34_img from "./product_34.png";
 import p35_img from "./product_35.png";
 import p36_img from "./product_36.png";
+import p37_img from "./product_37.jpg";
+import p38_img from "./product_38.jpg";
+import f1_img from './f1.jpg';
+import f2_img from './f2.jpg';
+import f3_img from './f3.jpg';
+import f4_img from './f4.jpg';
+import f5_img from './f5.jpg';
+import f6_img from './f6.jpg';
+import f7_img from './f7.jpg';
+import f8_img from './f8.jpg';
+import n1_img from './n1.jpg';
+import n2_img from './n2.jpg';
+import n3_img from './n3.jpg';
+import n4_img from './n4.jpg';
+import n5_img from './n5.jpg';
+import n6_img from './n6.jpg';
+import n7_img from './n7.jpg';
+import n8_img from './n8.jpg';
 
 let all_product = [
   {
@@ -324,6 +342,153 @@ let all_product = [
     new_price: 85.0,
     old_price: 120.5,
   },
+    {
+    id: 37,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: p37_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+    {
+    id: 38,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: p38_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 39,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: f1_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 40,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: f2_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 41,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: f3_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 42,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: f4_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 43,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: f5_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 44,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: f6_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 45,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "women",
+    image: f7_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 46,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "women",
+    image: f8_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 47,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: n1_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 48,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: n2_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 49,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: n3_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+
+
+   {
+    id: 50,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: n4_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 51,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: n5_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 52,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: n6_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 53,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: n7_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+   {
+    id: 54,
+    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    category: "men",
+    image: n8_img,
+    new_price: 85.0,
+    old_price: 120.5,
+  },
+
 ];
 
 export default all_product;

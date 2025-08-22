@@ -6,17 +6,18 @@ import { FaTruckMoving } from "react-icons/fa";
 import { FaUndoAlt } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { IoCall } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 const Shop = () => {
+ const navigate = useNavigate();
 
-
-  const CategoryCard = ({ image, title,description }) => (
+  const CategoryCard = ({ image, title,description,path }) => (
     <div className='category-card'>
       <img src={image} alt={title} />
       <h3>{title}</h3>
       <p>{description}</p>
-      <button className='btn secondary'>Shop Now</button>
-    </div>
-  );
+      <button className='btn secondary' onClick={()=> navigate(path)}>Shop Now</button>
+    </div>  );
   const ProductCard = ({ image, title, price, rating }) => (
     <div className='product-card'>
       <img src={image} alt={title}/>
@@ -54,6 +55,7 @@ const Shop = () => {
               alt={img.alt}
               title={img.title}
               description={img.description}
+              path={img.path}
             />
           ))}
         </div>
@@ -73,7 +75,7 @@ const Shop = () => {
             />
           ))}
         </div>
-        <button className='btn primary'>View All Products</button>
+        <button className='btn primary' onClick={()=> navigate('/viewproduct')}>View All Products</button>
       </section>
       {/* promotions */}
        <div className='card-container'>
@@ -81,7 +83,7 @@ const Shop = () => {
           <div className='card-text'>
             <h3>Summer Collection</h3>
             <p>Get up to 50% off on all summer essentials</p>
-            <button className='card-btn'> Shop Now </button>
+            <button className='card-btn' onClick={()=> navigate('/summer')}> Shop Now </button>
           </div>
           <div className='card-image'>
             <img src='summer collection.jpg' alt='Summer Collection'/>
