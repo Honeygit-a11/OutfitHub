@@ -17,6 +17,7 @@ const Summer = () => {
                 ${item.old_price}
               </span>
             </p>
+            <button className="btn add-cart">Add to Cart</button>
           </div>
         ))}
       </div>

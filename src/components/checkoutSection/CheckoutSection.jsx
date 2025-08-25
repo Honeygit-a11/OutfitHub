@@ -1,5 +1,5 @@
 import React from 'react'
-import Billing from '../Billing.jsx/Billing';
+// import Billing from '../Billing.jsx/Billing';
 import CheckoutForm from '../CheckoutForm';
 import '../CheckoutSection/CheckoutSection.css'
 const CheckoutSection = () => {

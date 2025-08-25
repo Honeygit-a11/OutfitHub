@@ -38,8 +38,8 @@ const Shop = () => {
           for everyone.
         </p>
         <div className='buttons'>
-          <a href='#' className='btn primary'>Shop Now</a>
-          <a href="#" className='btn secondary'>View Collection</a>
+          <button className='btn primary' onClick={()=> navigate('/summer')}>Shop Now</button>
+          <button className='btn secondary' onClick={()=> navigate('/viewproduct')}>View Collection</button>
         </div>
       </section>
 

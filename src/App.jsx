@@ -24,6 +24,7 @@ const App = () => {
       <Route index element={<Shop />}/>
       <Route path='/viewproduct' element={<Viewallproduct/>}/>
       <Route path='/summer' element={<Summer/>}/>
+      
       <Route path='/mens' element={<ShopCategory banner={men_banner} category='men'/>}/>
       <Route path='/womens' element={<ShopCategory banner={women_banner}category='women'/>}/>
       <Route path='/kids' element={<ShopCategory banner={kid_banner} category='kid'/>}/>
