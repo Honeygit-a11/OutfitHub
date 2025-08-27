@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const PaymentMethod = () => {
   const [method, setMethod] = useState("card");
-  const [verified, setVerified] = useState(false); // ✅ Track verification
+  const [verified, setVerified] = useState(false); 
   const { getFinalAmount, deliveryCharge, discount } = useContext(ShopContext);
 
   // validation handlers
