@@ -5,89 +5,93 @@ export const ShopContext = createContext(null);
 
 const getDefaultCart = () => {
   let cart = {};
-  for (let index = 0; index < all_product.length + 1; index++) {
-    cart[index] = 0;
-  }
+  all_product.forEach((product) => {
+    cart[product.id] = 0;
+  });
   return cart;
 };
 
 const ShopContextProvider = (props) => {
-  const [CartItems, setCartItems] = useState(getDefaultCart());
+  const [cartItems, setCartItems] = useState(getDefaultCart());
 
-  // ✅ All coupons here
-  const coupons = [
-    { code: "SAVE10", discount: 10 },
-    { code: "DISCOUNT20", discount: 20 },
-    { code: "NEW50", discount: 50 },
-  ];
+  const [discount, setDiscount] = useState(0);
+  const [deliveryCharge, setDeliveryCharge] = useState(0);
 
-  const [appliedCoupon, setAppliedCoupon] = useState(null);
-
-  // ✅ Reusable function to apply coupon
-  const applyCoupon = (code) => {
-    const coupon = coupons.find((c) => c.code === code.toUpperCase());
-    if (coupon) {
-      setAppliedCoupon(coupon);
-      return { success: true, message: `Coupon "${code}" applied!` };
-    } else {
-      setAppliedCoupon(null);
-      return { success: false, message: "Invalid coupon code" };
-    }
-  };
-
-  // Add to cart
+  const coupons={
+    HONEY07:10,
+    FIRST07:20,
+    DHONI07:40,
+    WELCOME07:30,
+    FORDER07: 5,
+};
   const addToCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId]? prev[itemId]+1:1,
+     }));
   };
 
-  // Remove from cart
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
   };
 
-  // ✅ Billing calculation function
-  const getBillingDetails = () => {
-    let subtotal = 0;
 
-    for (const item in CartItems) {
-      if (CartItems[item] > 0) {
+  const getTotalCartAmount = () => {
+    let totalAmount = 0;
+
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
         let itemInfo = all_product.find(
           (Product) => Product.id === Number(item)
         );
-        subtotal += itemInfo.new_price * CartItems[item];
+        totalAmount += itemInfo.new_price * cartItems[item];
       }
     }
 
-    let discount = appliedCoupon ? appliedCoupon.discount : 0;
-    let total = Math.max(0, subtotal - discount);
-
-    return {
-      subtotal,
-      discount,
-      total,
-      appliedCoupon,
-    };
+    return totalAmount;
   };
 
   const getTotalCartItems = () => {
     let totalItem = 0;
-    for (const item in CartItems) {
-      if (CartItems[item] > 0) {
-        totalItem += CartItems[item];
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        totalItem += cartItems[item];
       }
     }
     return totalItem;
   };
+  //apply coupon
+  const applyCoupon = (code) =>{
+      const coupon = coupons[code.toUpperCase()];
+      if(coupon){
+        setDiscount(coupon);
+        return true;
+      } else{
+        setDiscount(0);
+        return false;
+      }
+  };
+
+  const getFinalAmount = () =>{
+    let total = getTotalCartAmount();
+    if(discount <= 100){
+      return total -(total * discount)/100;
+    }else{
+      return total - discount + deliveryCharge;
+    }
+  };
 
   const contextValue = {
     getTotalCartItems,
+    getTotalCartAmount,
     all_product,
-    CartItems,
+    cartItems,
     addToCart,
     removeFromCart,
-    applyCoupon,       // ✅ use this to apply coupon anywhere
-    appliedCoupon,     // ✅ info about current coupon
-    getBillingDetails, // ✅ single billing function for everywhere
+    applyCoupon,
+    discount,
+    setDiscount,
+    getFinalAmount,
+    deliveryCharge,
+    setDeliveryCharge,
   };
 
   return (

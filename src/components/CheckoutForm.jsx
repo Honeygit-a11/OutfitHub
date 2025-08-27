@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react'
 import '../Style/CheckoutForm.css'
-import { ShopContext } from '../context/shopcontext';
+import { ShopContext } from '../context/ShopContext';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ onSubmit }) => {
   const [address, setAddress] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingId,setEditingId]=useState(null);
-  const {getTotalCartAmount} = useContext(ShopContext)
+  const { getFinalAmount , setDeliveryCharge,deliveryCharge} = useContext(ShopContext);
+  const [selectedDelivery, setSelectedDelivery] = useState('free')
   const [formData, setFromData] = useState({
     name: '',
     email: "",
@@ -16,13 +18,35 @@ const CheckoutForm = ({ onSubmit }) => {
     state: '',
     pincode: '',
   });
+const navigate = useNavigate();
+  
+  //PAGINATION
+  // const [currentPage,setCurrentPage] = useState(1);
+  // const addressPerPage = 1;
+
+  //
+  // const start = (currentPage -1)* addressPerPage;
+  // const currentAddress = address.slice(start + addressPerPage);
+  // const totalPages = Math.ceil(1,Math.ceil(address.length /addressPerPage ));
+
+    const handleDeliveryChange = (method,charge) => {
+    setSelectedDelivery(method);
+    setDeliveryCharge(charge);
+    
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFromData({ ...formData, [name]: value });
   };
 
   const handleAddAddress = () => {
+
+    if(editingId){
+      setAddress(address.map((addr)=>(addr.id === editingId ? {...formData,id:editingId}: addr)));
+    }else{
     setAddress([...address, { id: Date.now(), ...formData }]);
+    }
     setFromData({
       name: '',
       email: '',
@@ -32,6 +56,7 @@ const CheckoutForm = ({ onSubmit }) => {
       state: '',
       pincode: ''
     });
+    setEditingId(null);
     setShowForm(false);
   }
   const handleEdit=(addr)=>{
@@ -39,11 +64,14 @@ const CheckoutForm = ({ onSubmit }) => {
     setEditingId(addr.id);
     setShowForm(true);
   }
+  const handlepayment = () =>{
+    navigate('/payment');
+  }
   return (
     <>
       <div className="shipping-container">
 
-        <h2 className="shipping-heading">Delivery to</h2>
+        <h2 className="shipping-heading">Delivery Address</h2>
         <div
           className="add-address"
           onClick={() => {setShowForm(true)
@@ -52,6 +80,35 @@ const CheckoutForm = ({ onSubmit }) => {
   }
         >
           <span>+ ADD ADDRESS</span>
+        </div>
+
+        <div className='delivery-method-section'>
+          <h3>Choose Delivery Method</h3>
+          <div className='delivery-options'>
+            <label>
+              <input type='radio'
+              name='delivery'
+              checked={selectedDelivery === 'free'}
+              onChange={()=> handleDeliveryChange('free',0)}/>
+              Free Delivery (5-10 day) (₹0)
+            </label>
+            
+              <label>
+              <input type='radio'
+              name='delivery'
+              checked={selectedDelivery === 'express'}
+              onChange={()=> handleDeliveryChange('express',50)}/>
+              Express Delivery (1-2 Day) (₹50)
+            </label> 
+            
+             <label>
+              <input type='radio'
+              name='delivery'
+              checked={selectedDelivery === 'sameDay'}
+              onChange={()=> handleDeliveryChange('sameDay',100)}/>
+              Same-Day Delivery (On Same Day) (₹100)
+            </label>
+          </div>
         </div>
 
 
@@ -127,12 +184,24 @@ const CheckoutForm = ({ onSubmit }) => {
               <button className="deliver-btn" onClick={()=> handleEdit(addr)}>Change</button>
               </div>
           <div className="payment-info">
-          <h3>Total Cost : ₹{getTotalCartAmount()}</h3>
-          <button className='payment-btn'>Proceed to payment</button>
+          <h3>Total Cost : ₹{getFinalAmount() + deliveryCharge}</h3>
+          <button className='payment-btn'onClick={handlepayment}>Proceed to payment</button>
           </div>
             </div>
           ))}
         </div>
+        {/* {address.length > addressPerPage && (
+          <div className='pagination'>
+            <button disabled={currentPage === 1}
+            onClick={()=> setCurrentPage((p) => Math.max(1,p-1))}>Prev</button>
+            <span>Page {currentPage} of {totalPages}</span>
+            <button
+            disabled = {currentPage === totalPages}
+            onClick={()=> setCurrentPage((p)=> Math.min(totalPages,p+1))}>
+              Next
+            </button>
+          </div>
+        )} */}
         
         
       </div>

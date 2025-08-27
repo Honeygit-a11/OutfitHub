@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import summer from '../components/Assets/summer';
 import '../Style/Summer.css';
+import { ShopContext } from '../context/ShopContext';
 const Summer = () => {
+  const { addtocart }  = useContext(ShopContext);
   return (
     <>
     <div className='summer-colletion'>
@@ -17,7 +19,7 @@ const Summer = () => {
                 ${item.old_price}
               </span>
             </p>
-            <button className="btn add-cart">Add to Cart</button>
+            <button className="btn add-cart" onClick={()=> addtocart(item.id)}>Add to Cart</button>
           </div>
         ))}
       </div>

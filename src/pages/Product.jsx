@@ -4,7 +4,8 @@ import Breadcrum from '../components/Breadcrum';
 import ProductDisplay from '../components/ProductDisplay';
 import Descriptionbox from '../components/Descriptionbox';
 import Relatedproduct from '../components/Relatedproduct';
-import { ShopContext } from '../context/shopcontext';
+import { ShopContext } from '../context/ShopContext';
+// import { ShopContext } from '../context/shopcontext';
 
 const Product = () => {
     const {all_product} = useContext(ShopContext);

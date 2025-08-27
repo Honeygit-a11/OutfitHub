@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import Checkout from './pages/Checkout';
 import Viewallproduct from './pages/Viewallproduct';
 import Summer from './pages/Summer';
+import PaymentMethod from './components/payment/PaymentMethod';
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
       </Route>
       <Route path='/cart' element={<Cart/>}/>
       <Route path='/checkout' element={<Checkout/>}/>
+      <Route path='/payment' element={<PaymentMethod/>}/>
       <Route path='/Login' element={<LoginSignup/>}/>
       </Route>
 
